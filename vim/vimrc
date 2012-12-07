@@ -89,6 +89,7 @@ autocmd FileType python set completeopt=menu
 autocmd FileType python set expandtab              " Tabs are converted to spaces
 
 autocmd BufRead,BufNewFile *.go set filetype=go
+autocmd FileType go set shiftwidth=4 tabstop=4 noexpandtab
 
 " We'll use it for settings that should apply only to one OS (like Linux)
 let os=substitute(system('uname'), '\n', '', '')

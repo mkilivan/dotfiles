@@ -90,8 +90,6 @@ autocmd FileType python set expandtab              " Tabs are converted to space
 
 autocmd BufRead,BufNewFile *.go set filetype=go
 
-au BufRead,BufNewFile *.go       setlocal ft=go ts=8 sw=8 expandtab
-
 " We'll use it for settings that should apply only to one OS (like Linux)
 let os=substitute(system('uname'), '\n', '', '')
 

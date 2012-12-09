@@ -17,7 +17,7 @@ if exists(":CompilerSet") != 2          " older Vim always used :setlocal
 endif
  
 "Compiler program
-CompilerSet makeprg=go\ build
+CompilerSet makeprg=go\ build\ %
  
 "Compiler error format for go build
 CompilerSet errorformat=%f:%l:%m

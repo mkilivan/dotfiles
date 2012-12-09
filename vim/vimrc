@@ -90,6 +90,17 @@ autocmd FileType python set expandtab              " Tabs are converted to space
 
 autocmd BufRead,BufNewFile *.go set filetype=go
 
+"Quickfix window
+" Automatically open, but do not go to (if there are errors) the quickfix /
+" location list window, or close it when is has become empty.
+"
+" Note: Must allow nesting of autocmds to enable any customizations for
+" quickfix buffers.  Note: Normally, :cwindow jumps to the quickfix window if
+" the command opens it (but not if it's already open). However, as part of the
+" autocmd, this doesn't seem to happen.
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+
 " We'll use it for settings that should apply only to one OS (like Linux)
 let os=substitute(system('uname'), '\n', '', '')
 
@@ -145,7 +156,23 @@ endif
 let mapleader = ","
 let g:mapleader = ","
 
-set makeprg=make
+" Some useful quickfix shortcuts
+":cc      see the current error
+":cn      next error
+":cp      previous error
+":clist   list all errors
+map <C-n> :cn<CR>
+map <C-m> :cp<CR>
+
+"This trigger takes advantage of the fact that the quickfix window can be
+"easily distinguished by its file-type, qf. The wincmd J command is equivalent
+"to the Ctrl+W, Shift+J shortcut telling Vim to move a window to the very
+"bottom (see :help :wincmd and :help ^WJ).
+autocmd FileType qf wincmd J
+
+"Dont show me any output when I build something
+"Because I am using quickfix for errors
+nmap <leader>m :make<CR><enter>
 
 " Remove search hilight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -216,7 +243,6 @@ nnoremap Y y$
 "" Open the definition in a vertical split
 "map <leader>v :vsp <CR>:exec("tag ".expand("<cword>"))<CR>zz
 
-
 " ----------------------------------------- "
 " Plugin configs
 " ----------------------------------------- "
@@ -250,14 +276,14 @@ if os == 'Darwin' || os == 'Mac'
 endif
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$'] "
 
-autocmd vimenter * if !argc() | NERDTree | endif " open a NERDTree automatically when vim starts up if no files were specified
+" open a NERDTree automatically when vim starts up if no files were specified
+autocmd vimenter * if !argc() | NERDTree | endif 
 
 " autoclose
 let g:AutoClosePairs_add = "\" '"  "add quotes to autoclose plugin
 let g:AutoClosePairs_del = "{"     "remove quotes to autoclose plugin
 
 " tagbar
-
 if os == 'Linux'
 	nmap <leader>b :TagbarToggle<CR>
 	let g:tagbar_autofocus = 1

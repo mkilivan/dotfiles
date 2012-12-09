@@ -121,6 +121,7 @@ endif
 
 syntax enable                   " syntax formatting for languages
 set background=dark
+colorscheme molokai
 
 " No toolbars, menu or scrollbars in the GUI
 if has('gui')
@@ -134,11 +135,7 @@ if has('gui')
 	set guioptions-=L
 	set guioptions-=r  "no scrollbar
 	set guioptions-=R
-    colorscheme solarized
 end
-
-" For nongui choose molokoia
-colorscheme molokai
 
 " Color Column (only on insert)
 if exists("&colorcolumn")

@@ -171,6 +171,9 @@ autocmd FileType qf wincmd J
 "Because I am using quickfix for errors
 nmap <leader>m :make<CR><enter>
 
+" Quick go run for current file
+nmap <leader>r :!go run %<CR>
+
 " Remove search hilight
 nnoremap <leader><space> :nohlsearch<CR>
 

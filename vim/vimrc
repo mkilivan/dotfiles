@@ -126,14 +126,8 @@ if has('gui')
     colorscheme solarized
 end
 
-"Until we fix solarized on linux use this
-if os == 'Linux'
-  colorscheme molokai
-endif
-
-if os == 'Darwin' || os == 'Mac'
-  colorscheme solarized
-endif
+" For nongui choose molokoia
+colorscheme molokai
 
 " Color Column (only on insert)
 if exists("&colorcolumn")

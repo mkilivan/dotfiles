@@ -44,7 +44,6 @@ set laststatus=2
 set splitright                  " Split vertical windows right to the current windows
 set splitbelow                  " Split horizontal windows below to the current windows
 set noswapfile                  " Don't use swapfile
-set clipboard+=unnamed
 
 set mat=5                       " show matching brackets for 0.5 seconds
 set wrap                        " word wrap
@@ -89,6 +88,7 @@ autocmd FileType python set completeopt=menu
 autocmd FileType python set expandtab              " Tabs are converted to spaces
 
 autocmd BufRead,BufNewFile *.go set filetype=go
+autocmd BufRead,BufNewFile *.coffee set expandtab shiftwidth=2 softtabstop=2
 
 "Quickfix window
 " Automatically open, but do not go to (if there are errors) the quickfix /
@@ -127,6 +127,7 @@ colorscheme molokai
 if has('gui')
     if os == 'Darwin' || os == 'Mac'
         set guifont=Source\ Code\ Pro:h13
+        set clipboard+=unnamed
     endif
 	set vb t_vb=
 	set guioptions-=m  "no menu

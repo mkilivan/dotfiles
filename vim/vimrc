@@ -126,7 +126,7 @@ colorscheme molokai
 " No toolbars, menu or scrollbars in the GUI
 if has('gui')
     if os == 'Darwin' || os == 'Mac'
-        set guifont=Source\ Code\ Pro:h13
+        set guifont=Source\ Code\ Pro\ for\ Powerline:h13
         set clipboard+=unnamed
     endif
 	set vb t_vb=
@@ -306,3 +306,6 @@ endif
 if os == 'Linux'
     let g:gist_clip_command = 'xclip -selection clipboard'
 endif
+
+" powerline
+let g:Powerline_symbols = 'fancy'

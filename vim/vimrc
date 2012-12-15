@@ -63,6 +63,7 @@ set undofile
 set undodir=/tmp
 set nobackup            " Dont create annoying backup files
 
+
 " make vim save and load the folding of the document each time it loads"
 " also places the cursor in the last place that it was left."
 set viewdir=/tmp
@@ -287,10 +288,8 @@ let g:AutoClosePairs_add = "\" '"  "add quotes to autoclose plugin
 let g:AutoClosePairs_del = "{"     "remove quotes to autoclose plugin
 
 " tagbar
-if os == 'Linux'
-	nmap <leader>b :TagbarToggle<CR>
-	let g:tagbar_autofocus = 1
-endif
+nmap <leader>b :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
 
 " gundo
 nnoremap <leader>g :GundoToggle<CR>

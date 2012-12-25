@@ -23,7 +23,7 @@ set ignorecase                  " Search incase sensitive
 set ruler                       " show line and column number
 set wildmenu					" command line tab completion, more superior
 set wildmode=list:longest,list:full	  " type :h wildmode for more info about list options
-set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,.DS_Store,*.jpg,*.png,*.gif,*.bak,*.exe,*.so,*.la,*.out,*.pyc,*.swp
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,.DS_Store,*.jpg,*.png,*.gif,*.bak,*.exe,*.so,*.la,*.out,*.pyc,*.swp,*/.build
 
 set completeopt=menuone,longest,preview
 
@@ -211,7 +211,7 @@ map j gj
 map <MouseMiddle> <Esc>"*p
 
 " Just go out in insert mode
-imap jj <ESC>
+imap jk <ESC>l
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -263,13 +263,17 @@ let g:ctrlp_max_height = 10				" maxiumum height of match window
 let g:ctrlp_switch_buffer = 'Et'		" jump to a file if its open already
 let g:ctrlp_use_caching = 1				" enable caching
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp' "chache dir
+let g:ctrlp_clear_cache_on_exit = 0     "donr clear cache everytime we exit vim
 let g:ctrlp_show_hidden = 1				" show me dotfiles
 let g:ctrlp_mruf_max = 250				" number of recenytly opened files
+nmap <C-p> :CtrlP /Users/fatih/Code/<CR>
+"let g:ctrlp_open_new_file = 'v'     "open in a new vertical split
 
 " vim-coffee-plugin
 let g:coffee_compiler = '/usr/local/share/npm/bin/coffee'
 let g:coffee_linter = '/usr/local/share/npm/bin/coffeelint'
 let g:coffee_lint_options = '-f lint.json'
+let g:ctrlp_extensions = ['tag', 'buffertag', 'line', 'changes', 'mixed']
 
 " vim-nerdtree
 nmap <leader>n :NERDTreeToggle <CR>
@@ -294,6 +298,23 @@ let g:tagbar_autofocus = 1
 " gundo
 nnoremap <leader>g :GundoToggle<CR>
 
+" easymotion
+let g:EasyMotion_mapping_w = '<leader>k'
+
+" gist-vim
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+let g:gist_show_privates = 1
+
+if os == 'Darwin' || os == 'Mac'
+    let g:gist_clip_command = 'pbcopy'
+endif
+if os == 'Linux'
+    let g:gist_clip_command = 'xclip -selection clipboard'
+endif
+
+" powerline
+let g:Powerline_symbols = 'fancy'
 " gist-vim
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1

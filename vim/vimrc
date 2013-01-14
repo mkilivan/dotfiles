@@ -266,7 +266,7 @@ let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp' "chache dir
 let g:ctrlp_clear_cache_on_exit = 0     "donr clear cache everytime we exit vim
 let g:ctrlp_show_hidden = 1				" show me dotfiles
 let g:ctrlp_mruf_max = 250				" number of recenytly opened files
-nmap <C-p> :CtrlP /Users/fatih/Code/<CR>
+nmap <C-p> :CtrlP /home/murat/git/<CR>
 "let g:ctrlp_open_new_file = 'v'     "open in a new vertical split
 
 " vim-coffee-plugin

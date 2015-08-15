@@ -1,3 +1,6 @@
+" Set terminal color mode to 256
+set t_Co=256
+
 " .vimrc
 set nocompatible                "Turn off compability mode with Vi, we don't need that anymore
 

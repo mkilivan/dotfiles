@@ -86,3 +86,6 @@
 [submodule "vim/bundle/vim-easymotion"]
 	path = vim/bundle/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion
+[submodule "vim/colors"]
+	path = vim/colors
+	url = https://github.com/tomasr/molokai.git

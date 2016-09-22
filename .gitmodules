@@ -62,10 +62,6 @@
 	path = vim/bundle/jellybeans-color
 	url = https://github.com/nanotech/jellybeans.vim.git
 	ignore = dirty
-[submodule "vim/bundle/vim-tmux"]
-	path = vim/bundle/vim-tmux
-	url = https://github.com/tejr/vim-tmux.git
-	ignore = dirty
 [submodule "vim/bundle/vim-indent-guides"]
 	path = vim/bundle/vim-indent-guides
 	url = https://github.com/nathanaelkane/vim-indent-guides.git

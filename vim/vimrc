@@ -5,7 +5,7 @@ set t_Co=256
 set nocompatible                "Turn off compability mode with Vi, we don't need that anymore
 
 " Pathogen
-call pathogen#runtime_append_all_bundles()
+execute pathogen#infect()
 call pathogen#helptags()
 
 " Enable filetype stuff

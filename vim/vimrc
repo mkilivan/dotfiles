@@ -61,11 +61,12 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab 
 
-" Enable undo even if the file is closed
-set undofile
-set undodir=/tmp
-set nobackup            " Dont create annoying backup files
-
+if version > 703
+  " Enable undo even if the file is closed
+  set undofile
+  set undodir=/tmp
+  set nobackup            " Dont create annoying backup files
+endif
 
 " make vim save and load the folding of the document each time it loads"
 " also places the cursor in the last place that it was left."

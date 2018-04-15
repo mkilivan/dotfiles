@@ -41,8 +41,8 @@ set-option -g status-keys vi
 set-window-option -g mode-keys vi
 
 # v and y like vi in copy-mode
-bind-key -t vi-copy 'v' begin-selection
-bind-key -t vi-copy 'y' copy-selection
+bind-key -Tcopy-mode-vi 'v' send -X begin-selection
+bind-key -Tcopy-mode-vi 'y' send -X copy-selection
 
 # Example of using a shell command in the status line
 #set -g status-right “#[fg=yellow]#(uptime | cut -d ‘,’ -f 2-)”

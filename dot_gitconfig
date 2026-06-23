@@ -1,0 +1,56 @@
+[user]
+	name = Murat Kilivan
+	email = murat.kilivan@gmail.com
+[alias]
+    st = status
+    ci = commit
+    all = commit -am
+    br = branch
+    sw = switch
+    co = checkout
+    di = diff
+    dic = diff --cached
+    lg = log -p
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    ls = ls-files
+    ign = ls-files -o -i --exclude-standard
+
+[color]
+    ui = auto
+[color "diff"]
+    whitespace = red reverse
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+[core]
+    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    editor = code --wait
+    pager = delta
+
+[delta]
+    navigate = true
+    dark = true
+    line-numbers = true
+
+[interactive]
+    diffFilter = delta --color-only
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[github]
+	user = mkilivan
+
+[tig "color"]
+    date        = yellow    default
+    diff-stat   = cyan      default

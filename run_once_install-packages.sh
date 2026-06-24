@@ -38,13 +38,10 @@ if command -v zoxide &>/dev/null; then
   skip "zoxide" "$(version zoxide --version)"
 else
   info "Installing zoxide"
-  if [ "$OS" = "Darwin" ]; then
-    brew install zoxide
+  if curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh; then
     done_ "zoxide" "$(version zoxide --version)"
   else
-    if try_install_apt zoxide; then
-      done_ "zoxide" "$(version zoxide --version)"
-    fi
+    warn "zoxide not installed"
   fi
 fi
 
@@ -75,21 +72,6 @@ else
   else
     if try_install_apt eza; then
       done_ "eza" "$(version eza --version)"
-    fi
-  fi
-fi
-
-# delta (git diff pager)
-if command -v delta &>/dev/null; then
-  skip "delta" "$(version delta --version)"
-else
-  info "Installing delta"
-  if [ "$OS" = "Darwin" ]; then
-    brew install git-delta
-    done_ "delta" "$(version delta --version)"
-  else
-    if try_install_apt git-delta; then
-      done_ "delta" "$(version delta --version)"
     fi
   fi
 fi

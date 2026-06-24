@@ -52,7 +52,6 @@ Installed automatically by `run_once_install-packages.sh` on first `chezmoi appl
 | [zoxide](https://github.com/ajeetdsouza/zoxide) | Smarter `cd` (use: `z <dir>`) |
 | [fzf](https://github.com/junegunn/fzf) | Fuzzy finder (`Ctrl-R` history, `Ctrl-T` files) |
 | [eza](https://github.com/eza-community/eza) | Modern `ls` replacement |
-| [delta](https://github.com/dandavison/delta) | Git diff pager with syntax highlighting |
 | [tpm](https://github.com/tmux-plugins/tpm) | Tmux plugin manager |
 
 After tpm is installed, press `prefix + I` inside tmux to install plugins (tmux-resurrect, tmux-continuum).
@@ -62,5 +61,4 @@ After tpm is installed, press `prefix + I` inside tmux to install plugins (tmux-
 - **tmux prefix**: `C-a`; requires tmux 2.4+
 - **tmux clipboard**: uses `xclip -sel clip`; swap for `wl-copy` on Wayland
 - **tmux-resurrect**: saves/restores sessions across reboots (`prefix + Ctrl-s` save, `prefix + Ctrl-r` restore)
-- **git pager**: delta; falls back to less if not installed
 - **git editor**: VS Code (`code --wait`)

@@ -1,6 +1,11 @@
+{{- $name := (get . "name") | default "" -}}
+{{- $email := (get . "email") | default "" -}}
+{{- $githubUser := (get . "github_user") | default "" -}}
+
 [user]
-	name = Murat Kilivan
-	email = murat.kilivan@gmail.com
+    name = {{ $name }}
+    email = {{ $email }}
+    useConfigOnly = true
 [alias]
     st = status
     ci = commit
@@ -48,9 +53,14 @@
 [pull]
     rebase = true
 
+{{- if ne $githubUser "" }}
 [github]
-	user = mkilivan
+    user = {{ $githubUser }}
+{{- end }}
 
 [tig "color"]
     date        = yellow    default
     diff-stat   = cyan      default
+
+[include]
+    path = ~/.gitconfig.local

@@ -9,7 +9,7 @@ OS="$(uname)"
 info()    { echo -e "${BOLD}==> $1${RESET}"; }
 skip()    { echo "==> $1 already installed ($2), skipping"; }
 done_()   { echo "==> $1 $2 installed"; }
-version() { "$@" 2>&1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1; }
+version() { "$@" 2>&1 | grep -oE '[0-9]+\.[0-9]+[a-z]?[0-9]*(\.[0-9]+[a-z]?)?' | head -1; }
 
 # starship
 if command -v starship &>/dev/null; then
@@ -73,6 +73,19 @@ else
     sudo apt-get install -y git-delta
   fi
   done_ "delta" "$(version delta --version)"
+fi
+
+# tmux
+if command -v tmux &>/dev/null; then
+  skip "tmux" "$(version tmux -V)"
+else
+  info "Installing tmux"
+  if [ "$OS" = "Darwin" ]; then
+    brew install tmux
+  else
+    sudo apt-get install -y tmux
+  fi
+  done_ "tmux" "$(version tmux -V)"
 fi
 
 # tpm (tmux plugin manager)

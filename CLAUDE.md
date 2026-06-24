@@ -37,7 +37,7 @@ chezmoi source files use `dot_` prefix instead of a leading `.`:
 | Source file     | Applied to      |
 |-----------------|-----------------|
 | `dot_zshrc`     | `~/.zshrc`      |
-| `dot_gitconfig` | `~/.gitconfig`  |
+| `dot_config/git/config.tmpl` | `~/.config/git/config` |
 | `dot_tmux.conf` | `~/.tmux.conf`  |
 
 Files listed in `.chezmoiignore` (CLAUDE.md, README.md) are not applied to home.

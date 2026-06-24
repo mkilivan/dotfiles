@@ -183,7 +183,9 @@ function extract() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Zoxide — smarter cd (replaces autojump); use: z <dir>
-eval "$(zoxide init zsh)"
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
 
 # Starship — cross-shell prompt
 eval "$(starship init zsh)"

@@ -9,15 +9,28 @@ OS="$(uname)"
 info()    { echo -e "${BOLD}==> $1${RESET}"; }
 skip()    { echo "==> $1 already installed ($2), skipping"; }
 done_()   { echo "==> $1 $2 installed"; }
+warn()    { echo "==> WARNING: $1"; }
 version() { "$@" 2>&1 | grep -oE '[0-9]+\.[0-9]+[a-z]?[0-9]*(\.[0-9]+[a-z]?)?' | head -1; }
+
+try_install_apt() {
+  local pkg="$1"
+  if sudo apt-get install -y "$pkg"; then
+    return 0
+  fi
+  warn "Could not install ${pkg} (missing sudo privileges or apt failure). Continuing."
+  return 1
+}
 
 # starship
 if command -v starship &>/dev/null; then
   skip "starship" "$(version starship --version)"
 else
   info "Installing starship"
-  curl -sS https://starship.rs/install.sh | sh -s -- --yes
-  done_ "starship" "$(version starship --version)"
+  if curl -sS https://starship.rs/install.sh | sh -s -- --yes; then
+    done_ "starship" "$(version starship --version)"
+  else
+    warn "starship not installed"
+  fi
 fi
 
 # zoxide
@@ -27,10 +40,12 @@ else
   info "Installing zoxide"
   if [ "$OS" = "Darwin" ]; then
     brew install zoxide
+    done_ "zoxide" "$(version zoxide --version)"
   else
-    sudo apt-get install -y zoxide
+    if try_install_apt zoxide; then
+      done_ "zoxide" "$(version zoxide --version)"
+    fi
   fi
-  done_ "zoxide" "$(version zoxide --version)"
 fi
 
 # fzf
@@ -56,10 +71,12 @@ else
   info "Installing eza"
   if [ "$OS" = "Darwin" ]; then
     brew install eza
+    done_ "eza" "$(version eza --version)"
   else
-    sudo apt-get install -y eza
+    if try_install_apt eza; then
+      done_ "eza" "$(version eza --version)"
+    fi
   fi
-  done_ "eza" "$(version eza --version)"
 fi
 
 # delta (git diff pager)
@@ -69,10 +86,12 @@ else
   info "Installing delta"
   if [ "$OS" = "Darwin" ]; then
     brew install git-delta
+    done_ "delta" "$(version delta --version)"
   else
-    sudo apt-get install -y git-delta
+    if try_install_apt git-delta; then
+      done_ "delta" "$(version delta --version)"
+    fi
   fi
-  done_ "delta" "$(version delta --version)"
 fi
 
 # tmux
@@ -82,10 +101,12 @@ else
   info "Installing tmux"
   if [ "$OS" = "Darwin" ]; then
     brew install tmux
+    done_ "tmux" "$(version tmux -V)"
   else
-    sudo apt-get install -y tmux
+    if try_install_apt tmux; then
+      done_ "tmux" "$(version tmux -V)"
+    fi
   fi
-  done_ "tmux" "$(version tmux -V)"
 fi
 
 # tpm (tmux plugin manager)
@@ -110,15 +131,21 @@ else
       skip "unzip" "$(version unzip -v)"
     else
       info "Installing unzip"
-      sudo apt-get install -y unzip
-      done_ "unzip" "$(version unzip -v)"
+      if try_install_apt unzip; then
+        done_ "unzip" "$(version unzip -v)"
+      else
+        warn "Skipping JetBrains Mono Nerd Font install (unzip unavailable)"
+      fi
     fi
-    curl -fLo /tmp/JetBrainsMono.zip \
-      "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip"
-    mkdir -p ~/.local/share/fonts/JetBrainsMono
-    unzip -o /tmp/JetBrainsMono.zip -d ~/.local/share/fonts/JetBrainsMono/ '*.ttf'
-    fc-cache -fv
-    rm /tmp/JetBrainsMono.zip
-    echo "==> JetBrains Mono Nerd Font installed"
+
+    if command -v unzip &>/dev/null; then
+      curl -fLo /tmp/JetBrainsMono.zip \
+        "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip"
+      mkdir -p ~/.local/share/fonts/JetBrainsMono
+      unzip -o /tmp/JetBrainsMono.zip -d ~/.local/share/fonts/JetBrainsMono/ '*.ttf'
+      fc-cache -fv
+      rm /tmp/JetBrainsMono.zip
+      echo "==> JetBrains Mono Nerd Font installed"
+    fi
   fi
 fi

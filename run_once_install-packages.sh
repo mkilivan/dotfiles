@@ -106,6 +106,13 @@ else
     echo "==> JetBrains Mono Nerd Font already installed, skipping"
   else
     info "Installing JetBrains Mono Nerd Font (Linux)"
+    if command -v unzip &>/dev/null; then
+      skip "unzip" "$(version unzip -v)"
+    else
+      info "Installing unzip"
+      sudo apt-get install -y unzip
+      done_ "unzip" "$(version unzip -v)"
+    fi
     curl -fLo /tmp/JetBrainsMono.zip \
       "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip"
     mkdir -p ~/.local/share/fonts/JetBrainsMono

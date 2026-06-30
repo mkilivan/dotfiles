@@ -46,10 +46,18 @@ if command -v zoxide &>/dev/null; then
   skip "zoxide" "$(version zoxide --version)"
 else
   info "Installing zoxide"
-  if curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh; then
-    done_ "zoxide" "$(version zoxide --version)"
+  if [ "$OS" = "Darwin" ]; then
+    if brew install zoxide; then
+      done_ "zoxide" "$(version zoxide --version)"
+    else
+      warn "zoxide not installed"
+    fi
   else
-    warn "zoxide not installed"
+    if curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh; then
+      done_ "zoxide" "$(version zoxide --version)"
+    else
+      warn "zoxide not installed"
+    fi
   fi
 fi
 

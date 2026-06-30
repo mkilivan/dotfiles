@@ -2,6 +2,9 @@
 
 export PATH="$PATH:$HOME/.local/bin"
 
+# fzf binary path (git install on Linux)
+[ -d "$HOME/.fzf/bin" ] && export PATH="$HOME/.fzf/bin:$PATH"
+
 # eza — modern ls replacement
 if command -v eza &>/dev/null; then
     alias ls='eza --color=auto'
@@ -18,6 +21,13 @@ fi
 
 # Starship prompt
 command -v starship &>/dev/null && eval "$(starship init bash)"
+
+# fzf - keybindings and completion for Bash
+if command -v fzf &>/dev/null; then
+    eval "$(fzf --bash)" 2>/dev/null || { [ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"; }
+elif [ -f "$HOME/.fzf.bash" ]; then
+    source "$HOME/.fzf.bash"
+fi
 
 # NVM
 export NVM_DIR="$HOME/.nvm"

@@ -26,10 +26,18 @@ if command -v starship &>/dev/null; then
   skip "starship" "$(version starship --version)"
 else
   info "Installing starship"
-  if curl -sS https://starship.rs/install.sh | sh -s -- --yes; then
-    done_ "starship" "$(version starship --version)"
+  if [ "$OS" = "Darwin" ]; then
+    if brew install starship; then
+      done_ "starship" "$(version starship --version)"
+    else
+      warn "starship not installed"
+    fi
   else
-    warn "starship not installed"
+    if curl -sS https://starship.rs/install.sh | sh -s -- --yes; then
+      done_ "starship" "$(version starship --version)"
+    else
+      warn "starship not installed"
+    fi
   fi
 fi
 
